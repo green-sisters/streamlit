@@ -45,8 +45,6 @@ preset_colors = [
 ]
 
 def get_config_theme_color():
-    # ... 이전 코드 유지 ...
-
 theme_from_initial_config = get_config_theme_color()
 if theme_from_initial_config:
     preset_colors.append(("From the config", theme_from_initial_config))
