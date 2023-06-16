@@ -26,20 +26,21 @@
 
 import streamlit as st
 
-# 배경 이미지
-background_image = 'http://front-end-noobs.com/jecko/img/wave-top.png'
+# 배경 이미지 URL
+background_image_url = 'http://front-end-noobs.com/jecko/img/wave-top.png'
 
 # Streamlit 앱 설정
 st.set_page_config(page_title='Streamlit 앱', layout='wide')
 
-# 배경 이미지 삽입
+# 배경 이미지 적용
 st.markdown(
     f"""
     <style>
     body {{
-        background-image: url("{background_image}");
+        background-image: url("{background_image_url}");
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
     }}
     </style>
     """,
