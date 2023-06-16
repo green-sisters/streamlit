@@ -45,7 +45,25 @@ preset_colors = [
 ]
 
 def get_config_theme_color():
+    config_theme_primaryColor = st._config.get_option('theme.primaryColor')
+    config_theme_backgroundColor = st._config.get_option('theme.backgroundColor')
+    config_theme_secondaryBackgroundColor = st._config.get_option('theme.secondaryBackgroundColor')
+    config_theme_textColor = st._config.get_option('theme.textColor')
+    if (
+        config_theme_primaryColor is not None and
+        config_theme_backgroundColor is not None and
+        config_theme_secondaryBackgroundColor is not None and
+        config_theme_textColor is not None
+    ):
+        return ThemeColor(
+            primaryColor=config_theme_primaryColor,
+            backgroundColor=config_theme_backgroundColor,
+            secondaryBackgroundColor=config_theme_secondaryBackgroundColor,
+            textColor=config_theme_textColor,
+        )
+
+    return None
+
 theme_from_initial_config = get_config_theme_color()
 if theme_from_initial_config:
     preset_colors.append(("From the config", theme_from_initial_config))
-
