@@ -23,30 +23,31 @@
 # st.title('This is a title')
 # st.write('This is some content.')
 
+preset_colors = [
+    ("Default light", ThemeColor(
+        primaryColor="#ff4b4b",
+        backgroundColor="#ffffff",
+        secondaryBackgroundColor="#f0f2f6",
+        textColor="#31333F",
+    )),
+    ("Default dark", ThemeColor(
+        primaryColor="#ff4b4b",
+        backgroundColor="#0e1117",
+        secondaryBackgroundColor="#262730",
+        textColor="#fafafa",
+    )),
+    ("Custom theme", ThemeColor(
+        primaryColor="rgba(102, 234, 0, 0.73)",
+        backgroundColor="rgba(102, 234, 0, 0.73)",
+        secondaryBackgroundColor="rgba(102, 234, 0, 0.73)",
+        textColor="rgba(102, 234, 0, 0.73)",
+    )),
+]
 
-import streamlit as st
+def get_config_theme_color():
+    # ... 이전 코드 유지 ...
 
-# 배경 이미지 URL
-background_image_url = 'http://front-end-noobs.com/jecko/img/wave-top.png'
+theme_from_initial_config = get_config_theme_color()
+if theme_from_initial_config:
+    preset_colors.append(("From the config", theme_from_initial_config))
 
-# Streamlit 앱 설정
-st.set_page_config(page_title='Streamlit 앱', layout='wide')
-
-# 배경 이미지 적용
-st.markdown(
-    f"""
-    <style>
-    body {{
-        background-image: url("{background_image_url}");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# 컨텐츠 표시
-st.title('이것은 제목입니다')
-st.write('이것은 내용입니다.')
