@@ -19,7 +19,6 @@ st.markdown(
 
 points = 300
 
-def mainpage():
     st.title("Ecollege")
     
     # 카드 내역 이미지 불러오기
