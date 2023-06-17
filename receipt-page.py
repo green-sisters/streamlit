@@ -118,8 +118,7 @@ def ocr_naver(image_bytes):
     """, unsafe_allow_html=True)
 
 def add_points(amount):
-    # 포인트 추가 로직
-    # ...
+    pass
 
 if __name__ == '__main__':
     main()
