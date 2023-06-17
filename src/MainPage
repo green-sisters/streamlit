@@ -1,4 +1,4 @@
-# 모바일 레이아웃 설정 ##############################################################################################################
+# 1. 모바일 레이아웃 설정 ##############################################################################################################
 # 색상: rgba(102, 234, 0, 0.73) (=#66ea00;), 크기 조정
 
 import streamlit as st
@@ -20,6 +20,93 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title('This is a title')
-st.write('This is some content.')
 
+# 2. 메인 페이지 구성 ##############################################################################################################
+# 2-1. 녹색 포인트 적립 현황 ##############################################################################################################
+import requests
+
+points = 300
+
+def mainpage():
+    st.title("Ecollege")
+    
+    # 카드 내역 이미지 불러오기
+    image_path = "식비_카드_이미지.jpg"
+    image_url = "https://github.com/green-sisters/streamlit/raw/main/src/resource/c1.png"
+
+# 2-2. 실천하기 탭(영수증 인식, 재활용품 분리배출하기) ##############################################################################################################
+    st.markdown('##실천하기')
+
+    # 열 분할
+    col1, col2 = st.beta_columns(2)
+    
+    # 첫 번째 열에 이미지와 클릭 이벤트 추가
+    with col1:
+        image_url1 = "이미지1_URL"
+        st.image(image_url, use_column_width=True)
+        if st.button("영수증 인식"):
+            # 이미지1 클릭 시 이동할 페이지로 이동하는 코드
+            st.write("이미지1 클릭: 페이지1로 이동")
+    
+    # 두 번째 열에 이미지와 클릭 이벤트 추가
+    with col2:
+        image_url2 = "이미지2_URL"
+        st.image(image_url, use_column_width=True)
+        if st.button("재활용품 분리배출하기"):
+            # 이미지2 클릭 시 이동할 페이지로 이동하는 코드
+            st.write("이미지2 클릭: 페이지2로 이동")
+
+# 2-3. 포인트 사용처 ##############################################################################################################
+st.markdown('##포인트 사용처')
+    # 카드 내역 이미지 표시 및 이미지 클릭 이벤트 처리
+    if st.button("클릭하여 OCR 및 포인트 적립", key="이미지클릭", help="OCR을 진행하고 포인트를 적립합니다."):
+        ocr_result = perform_ocr(image_url)
+        if ocr_result and "쇼핑" in ocr_result:
+            add_points(10)  # 포인트 10 추가
+            st.write("포인트 적립 완료: 쇼핑 키워드 포함")
+        else:
+            st.write("OCR 결과: 쇼핑 키워드 미포함")
+    
+    # 이미지 표시
+    st.image(card_image_url, use_column_width=True)
+
+    # 누적 포인트 표시
+    st.write(f"당신의 포인트는 {points} 포인트입니다.")
+
+# OCR 실행 함수
+def perform_ocr(image_url):
+    # 네이버 OCR API를 사용하여 이미지에서 텍스트 추출
+    # API 요청 코드를 작성해야 합니다.
+    # ...
+
+    # 추출된 텍스트 반환
+    # 예시로 하드코딩으로 텍스트를 반환하도록 구현
+    return "카드 내역 쇼핑입니다."
+
+# 포인트 추가 함수
+def add_points(amount):
+    global points
+    points += amount
+
+if __name__ == '__main__':
+    main()
+
+
+def main():
+    st.title("메인 페이지")
+
+    # 이미지 URL
+    image_url = "https://github.com/green-sisters/streamlit/raw/main/src/resource/c1.png"
+
+    # 이미지를 상단에 배치
+    st.image(image_url, use_column_width=True)
+
+      # 이미지 클릭 시 식비 페이지로 이동하는 링크
+    if st.button("식비"):
+        # 식비 페이지로 이동하는 코드
+        st.write("식비 페이지로 이동합니다.")
+        # 식비 페이지의 내용을 작성합니다.
+        # ...
+
+if __name__ == '__main__':
+    main()
