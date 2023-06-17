@@ -1,3 +1,12 @@
+import streamlit as st
+from PIL import Image
+import requests
+import json
+import time
+import uuid
+import cv2
+import tempfile
+
 st.markdown(
     """
     <style>
@@ -15,14 +24,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-import streamlit as st
-from PIL import Image
-import requests
-import json
-import time
-import uuid
-import cv2
-import tempfile
 
 # 네이버 OCR API 설정
 api_url = 'https://qbt6a09jgb.apigw.ntruss.com/custom/v1/22868/ac35c97ba497dcff3abfab41716ba8999a7cc322edd363f9ce1876512a1dd152/general'
