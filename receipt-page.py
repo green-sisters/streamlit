@@ -108,23 +108,19 @@ def ocr_naver(image_bytes):
     else:
         return "Error : " + response.text
       
-    #c. 누적 포인트 시스템 구축
-    def add_points(amount):
-    # 포인트 추가 로직
-    # ...
     st.beta_container()
     st.markdown("""
         <div style="background-color: #f6f5d0; color: #000000; padding: 10px;">
-        실물 영수증 사용 시 80 point  <br>
-        전자 영수증 사용 시 100 point  <br>
-        하루 적립 가능 최대 300 point. <br>
+            실물 영수증 사용 시 80 point  <br>
+            전자 영수증 사용 시 100 point  <br>
+            하루 적립 가능 최대 300 point. <br>
         </div>
-        """.format(st.session_state['point']), unsafe_allow_html=True)    
+    """, unsafe_allow_html=True)
 
-    
+def add_points(amount):
+    # 포인트 추가 로직
+    # ...
+
 if __name__ == '__main__':
     main()
-    
-
-
 
