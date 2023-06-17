@@ -26,7 +26,7 @@ st.markdown(
 
 
 # 네이버 OCR API 설정
-api_url = 'https://qbt6a09jgb.apigw.ntruss.com/custom/v1/22868/ac35c97ba497dcff3abfab41716ba8999a7cc322edd363f9ce1876512a1dd152/general'
+api_url = "https://qbt6a09jgb.apigw.ntruss.com/custom/v1/22868/ac35c97ba497dcff3abfab41716ba8999a7cc322edd363f9ce1876512a1dd152/general"
 secret_key = 'dVdKZmpqSWpRUnh3c3d2Vmd1ZE1tVVhZbXd4cVdVVnU='
 
 #영수증 인식하기
