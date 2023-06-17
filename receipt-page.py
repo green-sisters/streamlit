@@ -18,7 +18,7 @@ secret_key = 'dVdKZmpqSWpRUnh3c3d2Vmd1ZE1tVVhZbXd4cVdVVnU='
 def main():
     st.title("Ecollege")
     # ...
-    st.beta_container()
+    st.container()
     st.markdown("""
         <div style="background-color: #f6f5d0; color: #000000; padding: 10px;">
             실물 영수증 사용 시 80 point  <br>
