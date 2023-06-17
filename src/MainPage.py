@@ -47,7 +47,6 @@ def mainpage():
             # 이미지2 클릭 시 이동할 페이지로 이동하는 코드
             st.write("이미지2 클릭: 페이지2로 이동")
 
-    st.markdown('##포인트 사용처')
 
 if __name__ == '__main__':
     mainpage()
