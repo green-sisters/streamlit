@@ -122,7 +122,6 @@ option0 = st.sidebar.selectbox(
 ('메뉴를 선택해주세요','대학교 인증하기','내 포인트 확인하기'))
 
 # (변경 사항)*********마이페이지- 대학교 인증하기 페이지**********
-
 # 기존의 대학교 목록
 campus_list = ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교']
 
@@ -131,17 +130,16 @@ if option0 == '대학교 인증하기':
     if 'user_name' not in st.session_state:
         st.session_state['user_name'] = ''
     if 'campus' not in st.session_state:
-        st.session_state['campus'] = None  # 초기값 설정
+        st.session_state['campus'] = None  # 초기값을 None으로 설정
     if 'show_instructions' not in st.session_state:
         st.session_state['show_instructions'] = False
 
     user_name = st.text_input("이름을 입력하세요", value=st.session_state['user_name'])
-    campus_index = st.radio('재학중인 학교를 선택하세요', campus_list, index=campus_list.index(st.session_state['campus']))
+    campus_index = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'], index=-1 if st.session_state['campus'] is None else 0)
 
-    st.session_state['campus'] = campus_list[campus_index]
-    
     if campus_index != -1:
-       st.session_state['campus'] = ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'][campus_index]
+        st.session_state['campus'] = ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'][campus_index]
+    
     if user_name:
         st.session_state['user_name'] = user_name
         st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
@@ -150,6 +148,7 @@ if option0 == '대학교 인증하기':
         st.session_state['show_instructions'] = True
 
     if st.session_state['show_instructions']:
+        st.write("인증 방법 설명을 여기에 쓸 수 있습니다.")
         # img = Image.open('src/안내 사진/대학교 인증 방법.png')
         # st.image(img)
         st.markdown("""
