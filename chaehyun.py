@@ -365,7 +365,7 @@ if option2 == '사용 가능한 매장 보러가기':
           st.image(img3, caption='부를샘')
           st.image(img4, caption='하얀샘')
         
-    if campus == 자이화여자대학교':
+    if campus == '이화여자대학교':
         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
         st.write("")
         img1 = Image.open('안내 사진/닥터로빈.png')
