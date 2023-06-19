@@ -114,7 +114,7 @@ if 'point' not in st.session_state:
 
 ## 메인 페이지 ##
 st.title('🍀에코리지')
-st.write('왼쪽 사이드바의 마이페이지를 클릭하여 대학교 인증을 진행하세요.')
+st.write('왼쪽 사이드바의 <대학교 인증하기>를 클릭하여 로그인을 요해주세요.')
 
 # (변경 사항)*********마이페이지 추가**********
 # 초기값 설정
@@ -124,24 +124,6 @@ option0 = st.sidebar.selectbox(
 )
 
 # 마이 페이지 1. 대학교 인증하기
-    
-# if option0 == '대학교 인증하기':
-#     if 'user_name' not in st.session_state:
-#         st.session_state['user_name'] = ''
-#     if 'campus' not in st.session_state:
-#         st.session_state['campus'] = ''
-
-#     user_name = st.text_input("이름을 입력하세요", value=st.session_state['user_name'])
-
-#     if user_name:
-#         st.session_state['user_name'] = user_name
-#         st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
-
-#         campus_list = ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교']
-#         campus = st.selectbox('재학중인 학교를 선택하세요', campus_list, index=0 if st.session_state['campus'] == '' else campus_list.index(st.session_state['campus']))
-
-#         if campus != st.session_state['campus']:
-#             st.session_state['campus'] = campus
 
 user_name = None
 campus = None
