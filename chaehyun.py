@@ -127,6 +127,8 @@ user_name = None
 campus = None
 option1 = None
 option2 = None
+option1_slot = st.empty()
+option2_slot = st.empty()
 
 if option0 == '대학교 인증하기':
   user_name = st.text_input("이름을 입력하세요")
@@ -141,13 +143,13 @@ if option0 == '대학교 인증하기':
    #st.image(img)
    st.markdown("""
                <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                   대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. 인증은 최소 1일에서 최대 3일 소요됩니다.
+                   대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. <br>
+                   인증은 최소 1일에서 최대 3일 소요됩니다.
                </div>
                """.format(st.session_state['point']), unsafe_allow_html=True) 
     
 #마이 페이지에 이름과 대학교를 입력하면(인증은 선택 사항) 다른 사이드바가 보이도록 구현 (변경 사항)
-if user_name:
-  if campus:
+if user_name and campus:
     option1 = st.sidebar.selectbox(
    '🌳실천하기',
   ('메뉴를 선택해주세요','영수증 인식하러 가기', '재활용품 분리배출 하러 가기'))
@@ -159,8 +161,8 @@ if user_name:
 ## 영수증 인식 페이지 ##
 if option1 == '영수증 인식하러 가기':
   option2 = '메뉴를 선택해주세요'
-  st.subheader("🧾영수증 인식")
-  st.markdown("""
+  option1_slot.subheader("🧾영수증 인식")
+  option1_slot.markdown("""
     <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
     종이영수증 대신 전자영수증을 발급하면 환경 보호에 더 도움이 돼요!<br>
     전자영수증: 100point<br>
@@ -168,42 +170,42 @@ if option1 == '영수증 인식하러 가기':
     하루 적립 가능 최대 포인트는 300point입니다
     </div>
     """.format(st.session_state['point']), unsafe_allow_html=True)
-  st.write("")
-  receipt_type = st.selectbox(
+  option1_slot.write("")
+  receipt_type = option1_slot.selectbox(
         '영수증 종류를 선택해주세요.',
         ('전자영수증', '종이영수증'))
   
   if receipt_type == '전자영수증':
-    upload_file = st.file_uploader('전자영수증을 업로드해주세요', type=['jpg', 'png', 'jpeg'])
+    upload_file = option1_slot.file_uploader('전자영수증을 업로드해주세요', type=['jpg', 'png', 'jpeg'])
     if upload_file is not None:
       # 이미지 열기
       img = Image.open(upload_file)
       img = img.resize((256,512))
-      st.image(img)
+      option1_slot.image(img)
       # OCR
       with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
         img.save(temp_file.name,)
         sentence, count = extract_text(temp_file.name)
         point = 100 * count
-        st.markdown("""
+        option1_slot.markdown("""
               <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
                   {}을(를) 이용하셨군요! {}포인트가 지급되었습니다!
               </div>
               """.format(sentence,point), unsafe_allow_html=True)
 
   else:
-    upload_file = st.file_uploader('종이영수증을 촬영해주세요 ', type=['jpg', 'png', 'jpeg'])
+    upload_file = option1_slot.file_uploader('종이영수증을 촬영해주세요 ', type=['jpg', 'png', 'jpeg'])
     if upload_file is not None:
         # 이미지 열기
         img = Image.open(upload_file)
         img = img.resize((256,512))
-        st.image(img)
+        option1_slot.image(img)
         # OCR
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
           img.save(temp_file.name,)
           sentence, count = extract_text(temp_file.name)
           point = 80 * count
-          st.markdown("""
+          option1_slot.markdown("""
                 <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
                     {}을(를) 이용하셨군요! {}포인트가 지급되었습니다!
                 </div>
