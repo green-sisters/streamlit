@@ -11,7 +11,7 @@ from PIL import ImageFont, ImageDraw, Image
 import time
 import re
 import tempfile
-import matplotlib #matplotlib 추가
+pip install matplotlib #matplotlib 설치
 from matplotlib import pyplot as plt
 # import cv2
 
