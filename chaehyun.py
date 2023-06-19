@@ -11,7 +11,7 @@ from PIL import ImageFont, ImageDraw, Image
 import time
 import re
 import tempfile
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 # import cv2
 
 import requests
