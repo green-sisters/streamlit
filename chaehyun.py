@@ -143,26 +143,21 @@ option0 = st.sidebar.selectbox(
 #         if campus != st.session_state['campus']:
 #             st.session_state['campus'] = campus
 
+option0 = st.sidebar.selectbox(
+  '👤마이페이지',
+  ('메뉴를 선택해주세요', '대학교 인증하기')
+)
+
+user_name = None
+campus = None
+
+# 대학교 인증하기
 if option0 == '대학교 인증하기':
-    if 'user_name' not in st.session_state:
-        st.session_state['user_name'] = ''
-    if 'campus' not in st.session_state:
-        st.session_state['campus'] = ''
-
-    user_name = st.text_input("이름을 입력하세요", value=st.session_state['user_name'])
-
-    if user_name:
-        st.session_state['user_name'] = user_name
-        st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
-
-        if 'campus' not in st.session_state or st.session_state['campus'] == 'Choose your option':
-            st.session_state['campus'] = ''
-
-        campus_list = ['Choose your option', '서강대학교', '연세대학교', '이화여자대학교', '홍익대학교']
-        campus = st.selectbox('재학중인 학교를 선택하세요', campus_list, index=campus_list.index(st.session_state['campus']))
-
-        if campus != 'Choose your option':
-            st.session_state['campus'] = campus
+  user_name = st.text_input("이름을 입력하세요")
+  if user_name:
+    st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
+  campus = st.radio('재학중인 학교를 선택하세요', ['삼육대학교','홍익대학교'])
+  user_point = 0
     if st.button("대학교 인증 방법"):
         # 대학교 인증 방법에 대한 설명
         st.write("대학교 인증 방법에 대한 설명을 여기에 쓸 수 있습니다.")
@@ -180,7 +175,8 @@ if option0 == '메뉴를 선택해주세요' or ('user_name' in st.session_state
     option1 = None
     option2 = None
 
-    if 'user_name' in st.session_state and 'campus' in st.session_state:
+if user_name and campus:
+  option1 = st.sidebar.selectbox(
         option1 = st.sidebar.selectbox(
             '🌳실천하기',
             ('메뉴를 선택해주세요', '영수증 인식하러 가기', '재활용품 분리배출 하러 가기')
