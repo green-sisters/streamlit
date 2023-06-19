@@ -135,7 +135,7 @@ option2_slot = st.empty()
 if option0 == '대학교 인증하기':
   user_name = option0_slot.text_input("이름을 입력하세요")
   if user_name:
-    option0_slot.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
+    st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
   campus = option0_slot.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
   user_point = 0
   
