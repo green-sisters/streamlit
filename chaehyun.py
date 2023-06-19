@@ -167,7 +167,6 @@ if option0 == '대학교 인증하기':
             st.session_state['campus'] = campus
 
     if st.button("대학교 인증 방법"):
-        st.write("대학교 인증 방법에 대한 설명을 여기에 쓸 수 있습니다.")
         st.markdown("""
             <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
                 대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. <br>
