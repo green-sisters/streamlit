@@ -116,12 +116,12 @@ if 'point' not in st.session_state:
 st.title('🍀에코리지')
 st.write('왼쪽 사이드바의 마이페이지를 클릭하여 대학교 인증을 진행하세요.')
 
-# *********option0(변경 사항)**********
+# (변경 사항)*********option0**********
 option0 = st.sidebar.selectbox(
   '👤마이페이지',
 ('메뉴를 선택해주세요','대학교 인증하기','내 포인트 확인하기'))
 
-# *********마이 페이지 1. 대학교 인증하기(변경 사항)**********
+# (변경 사항)*********마이 페이지 1. 대학교 인증하기**********
 user_name = None
 campus = None
 
@@ -132,15 +132,15 @@ if option0 == '대학교 인증하기':
   campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
   user_point = 0
   
-  # ********* 대학교 인증 페이지(변경항사항)**********
-   if st.button("대학교 인증 방법"):
-    # img = Image.open('src/안내 사진/대학교 인증 방법.png')
-    #st.image(img)
-    st.markdown("""
-                <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                    대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. 인증은 최소 1일에서 최대 3일 소요됩니다.
-                </div>
-                """.format(st.session_state['point']), unsafe_allow_html=True) 
+ # (변경 사항)********* 대학교 인증 페이지**********
+  if st.button("대학교 인증 방법"):
+   # img = Image.open('src/안내 사진/대학교 인증 방법.png')
+   #st.image(img)
+   st.markdown("""
+               <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
+                   대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. 인증은 최소 1일에서 최대 3일 소요됩니다.
+               </div>
+               """.format(st.session_state['point']), unsafe_allow_html=True) 
     
 #마이 페이지에 이름과 대학교를 입력하면(인증은 선택 사항) 다른 사이드바가 보이도록 구현 (변경 사항)
 if user_name:
