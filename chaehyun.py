@@ -149,12 +149,15 @@ if option0 == '대학교 인증하기':
             st.session_state['campus'] = campus
 
     if st.button("대학교 인증 방법"):
-        st.markdown("""
-            <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. <br>
-                인증은 최소 1일에서 최대 3일 소요됩니다.
-            </div>
-        """, unsafe_allow_html=True)
+      img = Image.open('src/안내 사진/인증 방법.png')
+      # img = img.resize((256, 256))
+      st.image(img)
+    #     st.markdown("""
+    #         <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
+    #             대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. <br>
+    #             인증은 최소 1일에서 최대 3일 소요됩니다.
+    #         </div>
+    #     """, unsafe_allow_html=True)
 else:
     user_name = None
     campus = None
