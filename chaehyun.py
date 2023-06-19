@@ -143,11 +143,6 @@ option0 = st.sidebar.selectbox(
 #         if campus != st.session_state['campus']:
 #             st.session_state['campus'] = campus
 
-option0 = st.sidebar.selectbox(
-  '👤마이페이지',
-  ('메뉴를 선택해주세요', '대학교 인증하기')
-)
-
 user_name = None
 campus = None
 
