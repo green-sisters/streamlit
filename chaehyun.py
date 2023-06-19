@@ -1,4 +1,4 @@
-#변경사항은 따로 표시해두었습니다.
+#변경사항 - 마이페이지 추가, 구성 개선
 
 import streamlit as st
 import pandas as pd
