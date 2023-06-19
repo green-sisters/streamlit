@@ -310,7 +310,7 @@ if option1 == '재활용품 분리배출 하러 가기':
 ## 사용 가능 지점 페이지 ##
 if option2 == '사용 가능한 매장 보러가기':
     option1 = '메뉴를 선택해주세요'
-    if campus == '서강대학교':
+    if st.session_state['campus'] == '서강대학교':
         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
         st.write("")
         img1 = Image.open('src/안내 사진/그라찌에.png')
@@ -345,7 +345,7 @@ if option2 == '사용 가능한 매장 보러가기':
             st.image(img6, caption='컴포즈')
       
       
-    if campus == '연세대학교':
+    if st.session_state['campus'] == '대학교':
         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
         st.write("")
         img1 = Image.open('src/안내 사진/고를샘.png')
@@ -366,7 +366,7 @@ if option2 == '사용 가능한 매장 보러가기':
           st.image(img3, caption='부를샘')
           st.image(img4, caption='하얀샘')
         
-    if campus == '이화여자대학교':
+    if st.session_state['campus'] == 자이화여자대학교':
         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
         st.write("")
         img1 = Image.open('안내 사진/닥터로빈.png')
@@ -386,7 +386,7 @@ if option2 == '사용 가능한 매장 보러가기':
           st.image(img3, caption='아이엔지')
       
       
-    if campus == '홍익대학교':
+    if st.session_state['campus'] == '홍익대학교':
         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
         st.write("")
         img1 = Image.open('src/안내 사진/그라찌에.png')
