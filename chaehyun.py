@@ -122,8 +122,11 @@ option0 = st.sidebar.selectbox(
 ('메뉴를 선택해주세요','대학교 인증하기','내 포인트 확인하기'))
 
 # (변경 사항)*********마이 페이지 1. 대학교 인증하기**********
+#초기값 설정
 user_name = None
 campus = None
+option1 = None
+option2 = None
 
 if option0 == '대학교 인증하기':
   user_name = st.text_input("이름을 입력하세요")
