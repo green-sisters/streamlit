@@ -149,7 +149,7 @@ if option0 == '대학교 인증하기':
             st.session_state['campus'] = campus
 
     if st.button("대학교 인증 방법"):
-      img = Image.open('src/안내 사진/인증 방법.png')
+      img = Image.open('src/안내 사진/인증 방식.png')
       # img = img.resize((256, 256))
       st.image(img)
     #     st.markdown("""
