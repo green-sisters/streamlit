@@ -178,8 +178,8 @@ else:
 
 # 마이 페이지 2. 메뉴를 선택해주세요
 # if option0 == '메뉴를 선택해주세요' or ('user_name' in st.session_state and 'campus' in st.session_state):
-#     option1 = None
-#     option2 = None
+option1 = None
+option2 = None
 
 if user_name and campus:
         option1 = st.sidebar.selectbox(
