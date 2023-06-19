@@ -116,6 +116,10 @@ if 'point' not in st.session_state:
 st.title('🍀에코리지')
 st.write('왼쪽 사이드바의 마이페이지를 클릭하여 대학교 인증을 진행하세요.')
 
+if option0 == '메뉴를 선택해주세요':
+    option1 = None
+    option2 = None
+
 # (변경 사항)*********마이페이지 추가**********
 option0 = st.sidebar.selectbox(
   '👤마이페이지',
@@ -123,8 +127,6 @@ option0 = st.sidebar.selectbox(
 
 # (변경 사항)*********마이페이지- 대학교 인증하기 페이지**********
 # 기존의 대학교 목록
-campus_list = ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교']
-
 if option0 == '대학교 인증하기':
     # 사용자 이름과 대학교가 세션 상태에 있는지 확인
     if 'user_name' not in st.session_state:
@@ -135,10 +137,10 @@ if option0 == '대학교 인증하기':
         st.session_state['show_instructions'] = False
 
     user_name = st.text_input("이름을 입력하세요", value=st.session_state['user_name'])
-    campus_index = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'], index=-1 if st.session_state['campus'] is None else 0)
+    campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'], index=-1 if st.session_state['campus'] is None else 0)
 
     if campus_index != -1:
-        st.session_state['campus'] = ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'][campus_index]
+        st.session_state['campus'] = ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'][campus]
     
     if user_name:
         st.session_state['user_name'] = user_name
