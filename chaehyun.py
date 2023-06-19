@@ -187,7 +187,6 @@ else:
 #     option2 = None
 
 if user_name and campus:
-  option1 = st.sidebar.selectbox(
         option1 = st.sidebar.selectbox(
             '🌳실천하기',
             ('메뉴를 선택해주세요', '영수증 인식하러 가기', '재활용품 분리배출 하러 가기')
