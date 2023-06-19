@@ -113,8 +113,9 @@ if 'point' not in st.session_state:
 ### 앱 화면 ###  
 
 ## 메인 페이지 ##
+main_page = st.empty() 
 st.title('🍀에코리지')
-st.write('왼쪽 사이드바의 마이페이지를 클릭하여 대학교 인증을 진행하세요.')
+main_page.write('왼쪽 사이드바의 마이페이지를 클릭하여 대학교 인증을 진행하세요.')
 
 # (변경 사항)*********option0**********
 option0 = st.sidebar.selectbox(
@@ -127,18 +128,19 @@ user_name = None
 campus = None
 option1 = None
 option2 = None
+option0_slot = st.empty()
 option1_slot = st.empty()
 option2_slot = st.empty()
 
 if option0 == '대학교 인증하기':
-  user_name = st.text_input("이름을 입력하세요")
+  user_name = option0_slot.text_input("이름을 입력하세요")
   if user_name:
-    st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
-  campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
+    option0_slot.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
+  campus = option0_slot.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
   user_point = 0
   
  # (변경 사항)********* 대학교 인증 페이지**********
-  if st.button("대학교 인증 방법"):
+  if option0_slot.button("대학교 인증 방법"):
    # img = Image.open('src/안내 사진/대학교 인증 방법.png')
    #st.image(img)
    st.markdown("""
