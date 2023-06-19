@@ -131,7 +131,7 @@ if option0 == '대학교 인증하기':
     if 'user_name' not in st.session_state:
         st.session_state['user_name'] = ''
     if 'campus' not in st.session_state:
-        st.session_state['campus'] = campus_list[0]  # 초기값을 첫번째 대학교로 설정
+        st.session_state['campus'] = None  # 초기값 설정
     if 'show_instructions' not in st.session_state:
         st.session_state['show_instructions'] = False
 
@@ -140,6 +140,8 @@ if option0 == '대학교 인증하기':
 
     st.session_state['campus'] = campus_list[campus_index]
     
+    if campus_index != -1:
+       st.session_state['campus'] = ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'][campus_index]
     if user_name:
         st.session_state['user_name'] = user_name
         st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
