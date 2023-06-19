@@ -117,18 +117,17 @@ st.title('🍀에코리지')
 main_page = st.empty() 
 main_page.write('왼쪽 사이드바의 마이페이지를 클릭하여 대학교 인증을 진행하세요.')
 
-# (변경 사항)*********option0**********
+# (변경 사항)*********마이페이지 추가**********
 option0 = st.sidebar.selectbox(
   '👤마이페이지',
 ('메뉴를 선택해주세요','대학교 인증하기','내 포인트 확인하기'))
 
-# (변경 사항)*********마이 페이지 1. 대학교 인증하기**********
+# (변경 사항)*********마이페이지- 대학교 인증하기 페이지**********
 #초기값 설정
 user_name = None
 campus = None
 option1 = None
 option2 = None
-option0_slot = st.empty()
 option1_slot = st.empty()
 option2_slot = st.empty()
 
@@ -140,6 +139,7 @@ if option0 == '대학교 인증하기':
   user_point = 0
   
  # (변경 사항)********* 대학교 인증 페이지**********
+  option0_slot = st.empty()
   if option0_slot.button("대학교 인증 방법"):
    # img = Image.open('src/안내 사진/대학교 인증 방법.png')
    #st.image(img)
