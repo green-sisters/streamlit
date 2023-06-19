@@ -153,27 +153,38 @@ campus = None
 
 # 대학교 인증하기
 if option0 == '대학교 인증하기':
-  user_name = st.text_input("이름을 입력하세요")
-  if user_name:
-    st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
-  campus = st.radio('재학중인 학교를 선택하세요', ['삼육대학교','홍익대학교'])
-  user_point = 0
+    if 'user_name' not in st.session_state:
+        st.session_state['user_name'] = ''
+    if 'campus' not in st.session_state:
+        st.session_state['campus'] = ''
+
+    user_name = st.text_input("이름을 입력하세요", value=st.session_state['user_name'])
+
+    if user_name:
+        st.session_state['user_name'] = user_name
+        st.sidebar.text(f'{user_name}님, Ecollege에 오신걸 환영합니다!')
+
+        campus = st.selectbox('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교', '이화여자대학교', '홍익대학교'], index=0 if st.session_state['campus'] == '' else campus_list.index(st.session_state['campus']))
+
+        if campus != st.session_state['campus']:
+            st.session_state['campus'] = campus
+
     if st.button("대학교 인증 방법"):
-        # 대학교 인증 방법에 대한 설명
         st.write("대학교 인증 방법에 대한 설명을 여기에 쓸 수 있습니다.")
-        # img = Image.open('src/안내 사진/대학교 인증 방법.png')
-        # st.image(img)
         st.markdown("""
-                  <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                      대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. <br>
-                       인증은 최소 1일에서 최대 3일 소요됩니다.
-                  </div>
-                   """.format(st.session_state['point']), unsafe_allow_html=True) 
+            <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
+                대학교 인증을 하시면 해당 대학 내 매장에서 포인트 사용이 가능합니다. <br>
+                인증은 최소 1일에서 최대 3일 소요됩니다.
+            </div>
+        """, unsafe_allow_html=True)
+else:
+    user_name = None
+    campus = None
 
 # 마이 페이지 2. 메뉴를 선택해주세요
-if option0 == '메뉴를 선택해주세요' or ('user_name' in st.session_state and 'campus' in st.session_state):
-    option1 = None
-    option2 = None
+# if option0 == '메뉴를 선택해주세요' or ('user_name' in st.session_state and 'campus' in st.session_state):
+#     option1 = None
+#     option2 = None
 
 if user_name and campus:
   option1 = st.sidebar.selectbox(
