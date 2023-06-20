@@ -164,7 +164,7 @@ if st.session_state.option1 == '영수증 인식하러 가기':
     st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
     st.write("")
     rounded_div = """
-    <div style="background-color: #fbfbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
+    <div style="background-color: #f4fbee; color: #006a34; padding: 10px; text-align: center; border-radius: 10px;">
     전자영수증: 100 point 적립<br>
     종이영수증: 80 point 적립
     </div>
@@ -210,7 +210,7 @@ if st.session_state.option1 == '영수증 인식하러 가기':
       
   if receipt_type =='종이영수증':
     rounded_div = """
-      <div style="background-color: #d4fbbd; color: #006a34
+      <div style="background-color: #f4fbee; color: #006a34; 
       ; padding: 10px; text-align: center; border-radius: 10px;">
           🌱종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!
       </div>
@@ -347,22 +347,22 @@ if st.session_state.option2 == '사용 가능한 매장 보러가기':
       st.image(img6, caption='컴포즈')
           
 if st.session_state.option2 == '자전거 타러가기':
-  st.subheader("🚲아래에서 이용권을 구매해주세요")
+  st.subheader("아래에서 이용권을 구매해주세요")
   st.markdown("""
           <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
-              <b>30분 이용권: 500원</b>
+              <b>🚲30분 이용권: 500원</b>
           </div>
           """.format(st.session_state['point']), unsafe_allow_html=True)
   st.write("")
   st.markdown("""
          <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
-            <b> 1시간 이용권: 1000원</b>
+            <b> 🚲1시간 이용권: 1000원</b>
          </div>
          """.format(st.session_state['point']), unsafe_allow_html=True)
   st.write("")
   st.markdown("""
          <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
-            <b> 2시간 이용권: 2000원</b>
+            <b> 🚲2시간 이용권: 2000원</b>
          </div>
          """.format(st.session_state['point']), unsafe_allow_html=True)
 
