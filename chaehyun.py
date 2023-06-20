@@ -331,7 +331,6 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
      
     
 if st.session_state.option2 == '사용 가능한 매장 보러가기':
-  st.write(f"현재 campus 상태: {st.session_state.campus}") # 디버깅을 위한 출력
   if st.session_state.campus == '서강대학교':
     st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
     st.write("")
