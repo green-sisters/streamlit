@@ -127,8 +127,8 @@ if option1 == '영수증 인식하러 가기':
     st.write("")
     rounded_div = """
 <div style="background-color: #d4fbbd; color: #006a34; padding: 10px; text-align: center; border-radius: 10px;">
-    전자영수증: 100 point 적립<br>
-    종이영수증: 80 point 적립<br>
+    <b>전자영수증: 100 point 적립<br>
+    종이영수증: 80 point 적립</b>
 </div>
 """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
@@ -161,11 +161,11 @@ if option1 == '영수증 인식하러 가기':
               """.format(point), unsafe_allow_html=True)
         st.session_state["user_point"] += point
 
-  else:
+  if receipt_type =='종이영수증':
     rounded_div = """
 <div style="background-color: #d4fbbd; color: #006a34
 ; padding: 10px; text-align: center; border-radius: 10px;">
-    종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!
+    <b>🌱종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!</b>
 </div>
 """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
