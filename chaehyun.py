@@ -290,7 +290,7 @@ else:
  index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(st.session_state.option2)
             )
     
-     if st.session_state.option2 == '사용 가능한 매장 보러가기'
+    if st.session_state.option2 == '사용 가능한 매장 보러가기'
        if st.session_state.campus == '서강대학교':
          st.subheader(f"{campus}에서 사용 가능한 매장입니다")
          st.write("")
