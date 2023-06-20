@@ -201,7 +201,7 @@ if option1 == '재활용품 분리배출 하러 가기':
   # option2 = '메뉴를 선택해주세요'
   st.subheader("♻️재활용품 분리배출")
   if st.button("반납 방법 알아보기"):
-    img = Image.open('안내 사진/음료 투입.png')
+    img = Image.open('src/안내 사진/음료 투입.png')
     img = img.resize((256, 256))
     st.image(img)
     st.markdown("""
@@ -219,7 +219,7 @@ if option1 == '재활용품 분리배출 하러 가기':
                 </div>
                 """.format(st.session_state['point']), unsafe_allow_html=True) 
     st.write("")
-    img = Image.open('안내 사진/캔분리수거.png')
+    img = Image.open('src/안내 사진/캔분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     st.markdown("""
@@ -228,7 +228,7 @@ if option1 == '재활용품 분리배출 하러 가기':
                 </div>
                 """.format(st.session_state['point']), unsafe_allow_html=True) 
     st.write("")
-    img = Image.open('안내 사진/유리분리수거.png')
+    img = Image.open('src/안내 사진/유리분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     st.markdown("""
@@ -280,14 +280,14 @@ if option2 == '사용 가능한 매장 보러가기':
   if campus == '서강대학교':
     st.subheader(f"{campus}에서 사용 가능한 매장입니다")
     st.write("")
-    img1 = Image.open('안내 사진/그라찌에.png')
-    img2 = Image.open('안내 사진/공차.png')
-    img3 = Image.open('안내 사진/본솔.png')
-    img4 = Image.open('안내 사진/아이엔지.jpg')
-    img5 = Image.open('안내 사진/커브.jpg')
-    img6 = Image.open('안내 사진/컴포즈.png')
-    img7 = Image.open('안내 사진/샐러디.png')
-    img8 = Image.open('안내 사진/한솥.png')
+    img1 = Image.open('src/안내 사진/그라찌에.png')
+    img2 = Image.open('src/안내 사진/공차.png')
+    img3 = Image.open('src/안내 사진/본솔.png')
+    img4 = Image.open('src/안내 사진/아이엔지.jpg')
+    img5 = Image.open('src/안내 사진/커브.jpg')
+    img6 = Image.open('src/안내 사진/컴포즈.png')
+    img7 = Image.open('src/안내 사진/샐러디.png')
+    img8 = Image.open('src/안내 사진/한솥.png')
 
     img1 = img1.resize((128,128))
     img2 = img2.resize((128,128))
@@ -315,10 +315,10 @@ if option2 == '사용 가능한 매장 보러가기':
   if campus == '연세대학교':
     st.subheader(f"{campus}에서 사용 가능한 매장입니다")
     st.write("")
-    img1 = Image.open('안내 사진/고를샘.png')
-    img2 = Image.open('안내 사진/맛나샘.png')
-    img3 = Image.open('안내 사진/부를샘.png')
-    img4 = Image.open('안내 사진/하얀샘.png')
+    img1 = Image.open('src/안내 사진/고를샘.png')
+    img2 = Image.open('src/안내 사진/맛나샘.png')
+    img3 = Image.open('src/안내 사진/부를샘.png')
+    img4 = Image.open('src/안내 사진/하얀샘.png')
 
     img1 = img1.resize((128,128))
     img2 = img2.resize((128,128))
@@ -356,9 +356,9 @@ if option2 == '사용 가능한 매장 보러가기':
   if campus == '홍익대학교':
     st.subheader(f"{campus}에서 사용 가능한 매장입니다")
     st.write("")
-    img1 = Image.open('안내 사진/그라찌에.png')
-    img2 = Image.open('안내 사진/카페나무.png')
-    img3 = Image.open('안내 사진/카페드림.png')
+    img1 = Image.open('src/안내 사진/그라찌에.png')
+    img2 = Image.open('src/안내 사진/카페나무.png')
+    img3 = Image.open('src/안내 사진/카페드림.png')
 
     img1 = img1.resize((128,128))
     img2 = img2.resize((128,128))
