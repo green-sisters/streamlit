@@ -119,22 +119,19 @@ option1 = st.sidebar.selectbox(
 if option1 == '영수증 인식하러 가기':
   #option2 = '메뉴를 선택해주세요'
   st.title("🧾영수증 인식")
-  # if st.button("환경을 위한 첫걸음, 전자 영수증 사용하기"):
-  #   st
-  
   if st.button("포인트 적립 방식"):   #포인트 적립 방식 안내
     st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
     st.write("")
     rounded_div = """
-<div style="background-color: #d4fbbd; color: #006a34; padding: 10px; text-align: center; border-radius: 10px;">
+<div style="background-color: #fbfbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
     <b>전자영수증: 100 point 적립<br>
-    종이영수증: 80 point 적립</b>
+   종이영수증: 80 point 적립</b>
 </div>
 """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
     st.write("")
-    st.write("하루 적립 가능 최대 포인트는 300 point입니다")
+    st.write("하루 적립 가능 최대 포인트는 300 point입니다.")
     st.write("개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
         
   st.write("") #영수증 종류 선택
@@ -154,11 +151,19 @@ if option1 == '영수증 인식하러 가기':
         img.save(temp_file.name,)
         sentence, count = extract_text(temp_file.name)
         point = 100 * count
-        st.markdown("""
-              <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
-                  다회용기를 사용하셨군요! {}포인트가 지급되었습니다!
-              </div>
-              """.format(point), unsafe_allow_html=True)
+        rounded_div = """
+<div style="background-color: #d4fbbd; color: #006a34
+; padding: 10px; text-align: center; border-radius: 10px;">
+    <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
+</div>
+"""
+        st.markdown(rounded_div.format(point), unsafe_allow_html=True)
+    
+        # st.markdown("""
+        #       <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
+        #           다회용기를 사용하셨군요! {}포인트가 지급되었습니다!
+        #       </div>
+        #       """.format(point), unsafe_allow_html=True)
         st.session_state["user_point"] += point
 
   if receipt_type =='종이영수증':
@@ -181,11 +186,13 @@ if option1 == '영수증 인식하러 가기':
           img.save(temp_file.name,)
           sentence, count = extract_text(temp_file.name)
           point = 80 * count
-          st.markdown("""
-                <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
-                    다회용기를 사용하셨군요! {}포인트가 지급되었습니다!
-                </div>
-                """.format(point), unsafe_allow_html=True)
+          rounded_div = """
+<div style="background-color: #d4fbbd; color: #006a34
+; padding: 10px; text-align: center; border-radius: 10px;">
+    <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
+</div>
+"""
+          st.markdown(rounded_div.format(point), unsafe_allow_html=True)
           st.session_state["user_point"] += point
 
 
