@@ -212,7 +212,7 @@ if st.session_state.option1 == '영수증 인식하러 가기':
     rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
-          <b>🌱종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!</b>
+          🌱종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!
       </div>
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
@@ -278,36 +278,36 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
                 """.format(st.session_state['point']), unsafe_allow_html=True) 
     
     st.write("")
-    upload_file = st.file_uploader('쓰레기를 투입구 위에 올려주세요',type=['jpg', 'png', 'jpeg'])
-    text_placeholder = st.empty()
-    if upload_file is not None:
-      text_placeholder.text('이미지 인식을 시작합니다')
+  upload_file = st.file_uploader('쓰레기를 투입구 위에 올려주세요',type=['jpg', 'png', 'jpeg'])
+  text_placeholder = st.empty()
+  if upload_file is not None:
+    text_placeholder.text('이미지 인식을 시작합니다')
        # 이미지 출력
-      img = Image.open(upload_file)
-      img = img.resize((256,256))
-      st.image(img)
+    img = Image.open(upload_file)
+    img = img.resize((256,256))
+    st.image(img)
       # 로딩 화면
       #with st.spinner('Wait for it...'):
         #time.sleep(3)
       # 이미지 인식
-      with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
-        img.save(temp_file.name,)
-        predicted_label = classification(temp_file.name)
-        price_dict = {'캔':30, '플라스틱': 20, '유리': 20}
-        if predicted_label == '확인불가':
-          st.markdown("""
-                     <div style="background-color: #fbeeee; color: #000000; padding: 10px;text-align: center;">
-                         <b>확인이 불가합니다. 올바르게 배출해주세요. </b>
-                     </div>
-                     """.format(st.session_state['point']), unsafe_allow_html=True) 
-        else:
-          st.markdown("""
-                 <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
-                     <b>{}을(를) 배출하셨습니다. {}포인트가 지급되었습니다!</b>
-                 </div>
-                 """.format(predicted_label,price_dict[predicted_label]), unsafe_allow_html=True)
-          st.session_state["user_point"] += price_dict[predicted_label]
-          text_placeholder.empty()
+    with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
+      img.save(temp_file.name,)
+      predicted_label = classification(temp_file.name)
+      price_dict = {'캔':30, '플라스틱': 20, '유리': 20}
+      if predicted_label == '확인불가':
+        st.markdown("""
+                   <div style="background-color: #fbeeee; color: #000000; padding: 10px;text-align: center;">
+                       <b>확인이 불가합니다. 올바르게 배출해주세요. </b>
+                   </div>
+                   """.format(st.session_state['point']), unsafe_allow_html=True) 
+      else:
+        st.markdown("""
+               <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
+                   <b>{}을(를) 배출하셨습니다. {}포인트가 지급되었습니다!</b>
+               </div>
+               """.format(predicted_label,price_dict[predicted_label]), unsafe_allow_html=True)
+        st.session_state["user_point"] += price_dict[predicted_label]
+        text_placeholder.empty()
           
      
     
