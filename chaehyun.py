@@ -115,8 +115,9 @@ if 'user_point' not in st.session_state:
   
 ## 메인 페이지 ##
 st.title('🍀에코리지')
-if 'option0' not in st.session_state:
-  st.write('왼쪽 사이드바의 <대학교 인증하기>를 클릭하여 정보를 입력해주세요.')
+if 'initialized' not in st.session_state:
+    st.session_state['initialized'] = True
+    st.write('왼쪽 사이드바의 <대학교 인증하기>를 클릭하여 정보를 입력해주세요.')
 st.session_state.option0 = st.sidebar.selectbox(
     '👤마이페이지',
     ('홈 화면', '대학교 인증하기'),
