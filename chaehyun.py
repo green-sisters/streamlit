@@ -125,47 +125,51 @@ if st.session_state.option0 == '대학교 인증하기':
     if st.session_state.user_name:
         st.text(f'🌱{st.session_state.user_name}님, Ecollege에 오신걸 환영합니다!')
     st.session_state.campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
-else:
     st.session_state.option1 = st.sidebar.selectbox(
        '🌳실천하기',
 ('메뉴를 선택해주세요','영수증 인식하러 가기', '재활용품 분리배출 하러 가기'),
   index=['메뉴를 선택해주세요', '영수증 인식하러 가기', '재활용품 분리배출 하러 가기'].index(st.session_state.option1)
     )
+    st.session_state.option2 = st.sidebar.selectbox(
+                  '💰모은 포인트 사용하러 가기 GoGo',
+('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'),
+ index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(st.session_state.option2)
+            )
 
 #영수증 인식 페이지  
-    if st.session_state.option1 == '영수증 인식하러 가기':
-        st.title("🧾영수증 인식")
-        if st.button("포인트 적립 방식"):   #포인트 적립 방식 안내
-          st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
-          st.write("")
-          rounded_div = """
-      <div style="background-color: #fbfbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
-          <b>전자영수증: 100 point 적립<br>
-         종이영수증: 80 point 적립</b>
-      </div>
-      """.format(st.session_state['point'])
-          st.markdown(rounded_div, unsafe_allow_html=True)
-          st.write("")
-          st.write("")
-          st.write("하루 적립 가능 최대 포인트는 300 point입니다.")
-          st.write("개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
+elif st.session_state.option1 == '영수증 인식하러 가기':
+  st.title("🧾영수증 인식")
+  if st.button("포인트 적립 방식"):   #포인트 적립 방식 안내
+    st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
+    st.write("")
+    rounded_div = """
+    <div style="background-color: #fbfbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
+    <b>전자영수증: 100 point 적립<br>
+    종이영수증: 80 point 적립</b>
+    </div>
+    """.format(st.session_state['point'])
+    st.markdown(rounded_div, unsafe_allow_html=True)
+    st.write("")
+    st.write("")
+    st.write("하루 적립 가능 최대 포인트는 300 point입니다.")
+    st.write("개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
               
-        st.write("") #영수증 종류 선택
-        receipt_type = st.selectbox(
-              '영수증 종류를 선택해주세요',
-              ('Choose an Option','전자영수증', '종이영수증')) 
+   st.write("") #영수증 종류 선택
+   receipt_type = st.selectbox(
+         '영수증 종류를 선택해주세요',
+         ('Choose an Option','전자영수증', '종이영수증')) 
         
-        if receipt_type == '전자영수증':
-          upload_file = st.file_uploader('전자영수증을 업로드해주세요', type=['jpg', 'png', 'jpeg'])
-          if upload_file is not None:
-            # 이미지 열기
-            img = Image.open(upload_file)
-            img = img.resize((256,512))
-            st.image(img)
-            # OCR
-            with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
-              img.save(temp_file.name,)
-              sentence, count = extract_text(temp_file.name)
+   if receipt_type == '전자영수증':
+     upload_file = st.file_uploader('전자영수증을 업로드해주세요', type=['jpg', 'png', 'jpeg'])
+     if upload_file is not None:
+      # 이미지 열기
+       img = Image.open(upload_file)
+       img = img.resize((256,512))
+       st.image(img)
+       # OCR
+       with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
+         img.save(temp_file.name,)
+         sentence, count = extract_text(temp_file.name)
               point = 100 * count
               rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
@@ -182,166 +186,161 @@ else:
               #       """.format(point), unsafe_allow_html=True)
               st.session_state["user_point"] += point
       
-        if receipt_type =='종이영수증':
-          rounded_div = """
+   if receipt_type =='종이영수증':
+     rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b>🌱종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!</b>
       </div>
       """.format(st.session_state['point'])
-          st.markdown(rounded_div, unsafe_allow_html=True)
-          st.write("")
-          upload_file = st.file_uploader('종이영수증을 촬영해주세요 ', type=['jpg', 'png', 'jpeg'])
-          if upload_file is not None:
-              # 이미지 열기
-              img = Image.open(upload_file)
-              img = img.resize((256,512))
-              st.image(img)
-              # OCR
-              with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
-                img.save(temp_file.name,)
-                sentence, count = extract_text(temp_file.name)
-                point = 80 * count
-                rounded_div = """
+      st.markdown(rounded_div, unsafe_allow_html=True)
+      st.write("")
+      upload_file = st.file_uploader('종이영수증을 촬영해주세요 ', type=['jpg', 'png', 'jpeg'])
+      if upload_file is not None:
+         # 이미지 열기
+        img = Image.open(upload_file)
+        img = img.resize((256,512))
+        st.image(img)
+         # OCR
+        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
+          img.save(temp_file.name,)
+          sentence, count = extract_text(temp_file.name)
+          point = 80 * count
+          rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
       </div>
       """
-                st.markdown(rounded_div.format(point), unsafe_allow_html=True)
-                st.session_state["user_point"] += point
-                
+          st.markdown(rounded_div.format(point), unsafe_allow_html=True)
+          st.session_state["user_point"] += point
+               
 #재활용품 페이지
-    elif st.session_state.option1 == '재활용품 분리배출 하러 가기':
-      st.subheader("♻️재활용품 분리배출")
-      if st.button("반납 방법 알아보기"):
-        img = Image.open('src/안내 사진/음료 투입.png')
-        img = img.resize((256, 256))
-        st.image(img)
-        st.markdown("""
-                    <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                        음료는 아래에 있는 음료 투입구에 버려주세요 
-                    </div>
-                    """.format(st.session_state['point']), unsafe_allow_html=True) 
-        st.write("")
-        img = Image.open('src/안내 사진/페트병 분리수거.png')
-        img = img.resize((256, 256))
-        st.image(img)
-        st.markdown("""
-                    <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                        페트병은 라벨을 제거하고 최대한 압축하여 배출구 위에 올려주세요 
-                    </div>
-                    """.format(st.session_state['point']), unsafe_allow_html=True) 
-        st.write("")
-        img = Image.open('src/안내 사진/캔분리수거.png')
-        img = img.resize((256, 256))
-        st.image(img)
-        st.markdown("""
-                    <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                        캔은 찌그러뜨려서 올려주세요 
-                    </div>
-                    """.format(st.session_state['point']), unsafe_allow_html=True) 
-        st.write("")
-        img = Image.open('src/안내 사진/유리분리수거.png')
-        img = img.resize((256, 256))
-        st.image(img)
-        st.markdown("""
-                    <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                        유리병은 라벨과 뚜껑의 재질이 다를 경우 분리해서 배출해주세요 
-                    </div>
-                    """.format(st.session_state['point']), unsafe_allow_html=True) 
-      
-      st.write("")
-      upload_file = st.file_uploader('쓰레기를 투입구 위에 올려주세요',type=['jpg', 'png', 'jpeg'])
-      text_placeholder = st.empty()
-      if upload_file is not None:
-        text_placeholder.text('이미지 인식을 시작합니다')
-        # 이미지 출력
-        img = Image.open(upload_file)
-        img = img.resize((256,256))
-        st.image(img)
-        # 로딩 화면
-        #with st.spinner('Wait for it...'):
-          #time.sleep(3)
-        # 이미지 인식
-        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
-          img.save(temp_file.name,)
-          predicted_label = classification(temp_file.name)
-          price_dict = {'캔':30, '플라스틱': 20, '유리': 20}
-          if predicted_label == '확인불가':
-            st.markdown("""
-                        <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                            확인이 불가합니다. 올바르게 배출해주세요. 
-                        </div>
-                        """.format(st.session_state['point']), unsafe_allow_html=True) 
-          else:
-            st.markdown("""
-                    <div style="background-color: #dbead5; color: #000000; padding: 10px;text-align: center;">
-                        {}을(를) 배출하셨습니다. {}포인트가 지급되었습니다!
-                    </div>
-                    """.format(predicted_label,price_dict[predicted_label]), unsafe_allow_html=True)
-            st.session_state["user_point"] += price_dict[predicted_label]
-        text_placeholder.empty()
-          
-    else:
-      st.session_state.option2 = st.sidebar.selectbox(
-                  '💰모은 포인트 사용하러 가기 GoGo',
-('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'),
- index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(st.session_state.option2)
-            )
+elif st.session_state.option1 == '재활용품 분리배출 하러 가기':
+  st.subheader("♻️재활용품 분리배출")
+  if st.button("반납 방법 알아보기"):
+    img = Image.open('src/안내 사진/음료 투입.png')
+    img = img.resize((256, 256))
+    st.image(img)
+    st.markdown("""
+                <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
+                    음료는 아래에 있는 음료 투입구에 버려주세요 
+                </div>
+                """.format(st.session_state['point']), unsafe_allow_html=True) 
+    st.write("")
+    img = Image.open('src/안내 사진/페트병 분리수거.png')
+    img = img.resize((256, 256))
+    st.image(img)
+    st.markdown("""
+               <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
+                    페트병은 라벨을 제거하고 최대한 압축하여 배출구 위에 올려주세요 
+                </div>
+                """.format(st.session_state['point']), unsafe_allow_html=True) 
+    st.write("")
+    img = Image.open('src/안내 사진/캔분리수거.png')
+    img = img.resize((256, 256))
+    st.image(img)
+    st.markdown("""
+                 <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
+                    캔은 찌그러뜨려서 올려주세요 
+                 </div>
+                 """.format(st.session_state['point']), unsafe_allow_html=True) 
+    st.write("")
+    img = Image.open('src/안내 사진/유리분리수거.png')
+    img = img.resize((256, 256))
+    st.image(img)
+    st.markdown("""
+                <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
+                    유리병은 라벨과 뚜껑의 재질이 다를 경우 분리해서 배출해주세요 
+                </div>
+                """.format(st.session_state['point']), unsafe_allow_html=True) 
     
-    if st.session_state.option2 == '사용 가능한 매장 보러가기':
-       if st.session_state.campus == '서강대학교':
-         st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
-         st.write("")
-         img1 = Image.open('src/안내 사진/그라찌에.png')
-         img2 = Image.open('src/안내 사진/공차.png')
-         img3 = Image.open('src/안내 사진/본솔.png')
-         img4 = Image.open('src/안내 사진/아이엔지.jpg')
-         img5 = Image.open('src/안내 사진/커브.jpg')
-         img6 = Image.open('src/안내 사진/컴포즈.png')
-         img7 = Image.open('src/안내 사진/샐러디.png')
-         img8 = Image.open('src/안내 사진/한솥.png')
+    st.write("")
+    upload_file = st.file_uploader('쓰레기를 투입구 위에 올려주세요',type=['jpg', 'png', 'jpeg'])
+    text_placeholder = st.empty()
+    if upload_file is not None:
+      text_placeholder.text('이미지 인식을 시작합니다')
+       # 이미지 출력
+      img = Image.open(upload_file)
+      img = img.resize((256,256))
+      st.image(img)
+      # 로딩 화면
+      #with st.spinner('Wait for it...'):
+        #time.sleep(3)
+      # 이미지 인식
+      with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
+        img.save(temp_file.name,)
+        predicted_label = classification(temp_file.name)
+        price_dict = {'캔':30, '플라스틱': 20, '유리': 20}
+        if predicted_label == '확인불가':
+          st.markdown("""
+                     <div style="background-color: #fbeeee; color: #000000; padding: 10px;text-align: center;">
+                         <b>확인이 불가합니다. 올바르게 배출해주세요. </b>
+                     </div>
+                     """.format(st.session_state['point']), unsafe_allow_html=True) 
+        else:
+          st.markdown("""
+                 <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
+                     <b>{}을(를) 배출하셨습니다. {}포인트가 지급되었습니다!</b>
+                 </div>
+                 """.format(predicted_label,price_dict[predicted_label]), unsafe_allow_html=True)
+          st.session_state["user_point"] += price_dict[predicted_label]
+          text_placeholder.empty()
+          
+     
+    
+elif st.session_state.option2 == '사용 가능한 매장 보러가기':
+  if st.session_state.campus == '서강대학교':
+    st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
+    st.write("")
+    img1 = Image.open('src/안내 사진/그라찌에.png')
+    img2 = Image.open('src/안내 사진/공차.png')
+    img3 = Image.open('src/안내 사진/본솔.png')
+    img4 = Image.open('src/안내 사진/아이엔지.jpg')
+    img5 = Image.open('src/안내 사진/커브.jpg')
+    img6 = Image.open('src/안내 사진/컴포즈.png')
+    img7 = Image.open('src/안내 사진/샐러디.png')
+    img8 = Image.open('src/안내 사진/한솥.png')
               
-         img1 = img1.resize((128,128))
-         img2 = img2.resize((128,128))
-         img3 = img3.resize((128,128))
-         img4 = img4.resize((128,128))
-         img5 = img5.resize((128,128))
-         img6 = img6.resize((128,128))
-         img7 = img7.resize((128,128))
-         img8 = img8.resize((128,128))
-             
-         col1, col2, col3 = st.columns(3)
-         with col1:
-           st.image(img1, caption='그라찌에')
-           st.image(img4, caption='아이엔지')
-           st.image(img7, caption='샐러디')
-         with col2:
-           st.image(img2, caption='공차')
-           st.image(img5, caption='커피브레이크')
-           st.image(img8, caption='한솥')
-         with col3:
-           st.image(img3, caption='본솔')
-           st.image(img6, caption='컴포즈')
+    img1 = img1.resize((128,128))
+    img2 = img2.resize((128,128))
+    img3 = img3.resize((128,128))
+    img4 = img4.resize((128,128))
+    img5 = img5.resize((128,128))
+    img6 = img6.resize((128,128))
+    img7 = img7.resize((128,128))
+    img8 = img8.resize((128,128))
            
+    col1, col2, col3 = st.columns(3)
+    with col1:
+      st.image(img1, caption='그라찌에')
+      st.image(img4, caption='아이엔지')
+      st.image(img7, caption='샐러디')
+    with col2:
+      st.image(img2, caption='공차')
+      st.image(img5, caption='커피브레이크')
+      st.image(img8, caption='한솥')
+    with col3:
+      st.image(img3, caption='본솔')
+      st.image(img6, caption='컴포즈')
+          
     if st.session_state.option2 == '자전거 타러가기':
        st.subheader("🚲아래에서 이용권을 구매해주세요")
        st.markdown("""
-              <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
-                  30분 이용권: 500원
+              <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
+                  <b>30분 이용권: 500원</b>
               </div>
               """.format(st.session_state['point']), unsafe_allow_html=True)
        st.write("")
        st.markdown("""
-              <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
-                  1시간 이용권: 1000원
+              <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
+                 <b> 1시간 이용권: 1000원</b>
               </div>
               """.format(st.session_state['point']), unsafe_allow_html=True)
        st.write("")
        st.markdown("""
-              <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
-                  2시간 이용권: 2000원
+              <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
+                 <b> 2시간 이용권: 2000원</b>
               </div>
               """.format(st.session_state['point']), unsafe_allow_html=True)
  
@@ -351,9 +350,12 @@ for i in range(8):
   st.sidebar.write("")
   
 st.sidebar.subheader(f'현재 적립포인트는 {st.session_state["user_point"]}p입니다')
-st.sidebar.markdown("""
-    <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
-    녹색자매님이 100p 적립했습니다!
-    </div>
-    """.format(st.session_state['point']), unsafe_allow_html=True)
+rounded_div = """
+      <div style="background-color: #f4fbee; color: #006a34
+      ; padding: 10px; text-align: center; border-radius: 10px;">
+           녹색자매님이 100p 적립했습니다!
+      </div>
+      """
+st.sidebar.markdown(rounded_div.format(point), unsafe_allow_html=True)
+
 
