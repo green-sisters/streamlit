@@ -103,11 +103,11 @@ if 'point' not in st.session_state:
 
 # 초기 세션 상태 설정
 if 'option0' not in st.session_state:
-    session_state.option0 = '메뉴를 선택해주세요'
+    st.session_state.option0 = '메뉴를 선택해주세요'
 if 'option1' not in st.session_state:
-    session_state.option1 = '메뉴를 선택해주세요'
+    st.session_state.option1 = '메뉴를 선택해주세요'
 if 'option2' not in st.session_state:
-    session_state.option2 = '메뉴를 선택해주세요'
+    st.session_state.option2 = '메뉴를 선택해주세요'
   
 ## 메인 페이지 ##
 st.title('🍀에코리지')
