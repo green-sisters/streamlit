@@ -154,8 +154,8 @@ elif st.session_state.option1 == '영수증 인식하러 가기':
     st.write("하루 적립 가능 최대 포인트는 300 point입니다.")
     st.write("개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
               
-   st.write("") #영수증 종류 선택
-   receipt_type = st.selectbox(
+    st.write("") #영수증 종류 선택
+    receipt_type = st.selectbox(
          '영수증 종류를 선택해주세요',
          ('Choose an Option','전자영수증', '종이영수증')) 
         
