@@ -180,61 +180,61 @@ if st.session_state.option1 == '영수증 인식하러 가기':
          '영수증 종류를 선택해주세요',
          ('Choose an Option','전자영수증', '종이영수증')) 
         
-    if receipt_type == '전자영수증':
-      upload_file = st.file_uploader('전자영수증을 업로드해주세요', type=['jpg', 'png', 'jpeg'])
-      if upload_file is not None:
+  if receipt_type == '전자영수증':
+    upload_file = st.file_uploader('전자영수증을 업로드해주세요', type=['jpg', 'png', 'jpeg'])
+    if upload_file is not None:
        # 이미지 열기
-        img = Image.open(upload_file)
-        img = img.resize((256,512))
-        st.image(img)
+      img = Image.open(upload_file)
+      img = img.resize((256,512))
+      st.image(img)
        # OCR
-        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
-          img.save(temp_file.name,)
-          sentence, count = extract_text(temp_file.name)
-          st.session_state['point'] = 100 * count
-          rounded_div = """
+      with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
+        img.save(temp_file.name,)
+        sentence, count = extract_text(temp_file.name)
+        st.session_state['point'] = 100 * count
+        rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
       </div>
       """
-          st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
+        st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
           
               # st.markdown("""
               #       <div style="background-color: #f4fbee; color: #006a34; padding: 10px; text-align: center;">
               #           다회용기를 사용하셨군요! {}포인트가 지급되었습니다!
               #       </div>
               #       """.format(point), unsafe_allow_html=True)
-          st.session_state["user_point"] += st.session_state['point']
+        st.session_state["user_point"] += st.session_state['point']
       
-    if receipt_type =='종이영수증':
-      rounded_div = """
+  if receipt_type =='종이영수증':
+    rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b>🌱종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!</b>
       </div>
       """.format(st.session_state['point'])
-      st.markdown(rounded_div, unsafe_allow_html=True)
-      st.write("")
-      upload_file = st.file_uploader('종이영수증을 촬영해주세요 ', type=['jpg', 'png', 'jpeg'])
-      if upload_file is not None:
-         # 이미지 열기
-        img = Image.open(upload_file)
-        img = img.resize((256,512))
-        st.image(img)
-         # OCR
-        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
-          img.save(temp_file.name,)
-          sentence, count = extract_text(temp_file.name)
-          st.session_state['point'] = 80 * count
-          rounded_div = """
+    st.markdown(rounded_div, unsafe_allow_html=True)
+    st.write("")
+    upload_file = st.file_uploader('종이영수증을 촬영해주세요 ', type=['jpg', 'png', 'jpeg'])
+    if upload_file is not None:
+       # 이미지 열기
+      img = Image.open(upload_file)
+      img = img.resize((256,512))
+      st.image(img)
+       # OCR
+      with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
+        img.save(temp_file.name,)
+        sentence, count = extract_text(temp_file.name)
+        st.session_state['point'] = 80 * count
+        rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
       </div>
       """
-          st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
-          st.session_state["user_point"] += st.session_state['point']
+        st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
+        st.session_state["user_point"] += st.session_state['point']
                
 #재활용품 페이지
 if st.session_state.option1 == '재활용품 분리배출 하러 가기':
