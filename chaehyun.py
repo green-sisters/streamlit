@@ -11,7 +11,6 @@ import re
 import tempfile
 from matplotlib import pyplot as plt
 # import cv2
-from streamlit_ace import session_state
 
 import requests
 import uuid
@@ -103,11 +102,11 @@ if 'point' not in st.session_state:
 ### 앱 화면 ###  
 
 # 초기 세션 상태 설정
-if 'option0' not in session_state:
+if 'option0' not in st.session_state:
     session_state.option0 = '메뉴를 선택해주세요'
-if 'option1' not in session_state:
+if 'option1' not in st.session_state:
     session_state.option1 = '메뉴를 선택해주세요'
-if 'option2' not in session_state:
+if 'option2' not in st.session_state:
     session_state.option2 = '메뉴를 선택해주세요'
   
 ## 메인 페이지 ##
@@ -118,9 +117,9 @@ if 'user_point' not in st.session_state:
 option0 = st.sidebar.selectbox(
     '👤마이페이지',
     ('메뉴를 선택해주세요', '대학교 인증하기'),
-    index=['메뉴를 선택해주세요', '대학교 인증하기'].index(session_state.option0)
+    index=['메뉴를 선택해주세요', '대학교 인증하기'].index(st.session_state.option0)
 )
-session_state.option0 = option0
+st.session_state.option0 = option0
 
 if option0 == "대학교 인증하기":
   user_name = st.text_input("이름을 입력하세요", key="user_name_input")
@@ -133,9 +132,9 @@ if option0 == "대학교 인증하기":
 option1 = st.sidebar.selectbox(
   '🌳실천하기',
 ('메뉴를 선택해주세요','영수증 인식하러 가기', '재활용품 분리배출 하러 가기'),
-  index=['메뉴를 선택해주세요', '영수증 인식하러 가기', '재활용품 분리배출 하러 가기'].index(session_state.option1)
+  index=['메뉴를 선택해주세요', '영수증 인식하러 가기', '재활용품 분리배출 하러 가기'].index(st.session_state.option1)
 )
-session_state.option1 = option1
+st.session_state.option1 = option1
 
 if option1 == '영수증 인식하러 가기':
   #option2 = '메뉴를 선택해주세요'
@@ -295,9 +294,9 @@ if option1 == '재활용품 분리배출 하러 가기':
 option2 = st.sidebar.selectbox(
   '💰모은 포인트 사용하러 가기 GoGo',
 ('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'),
- index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(session_state.option2)
+ index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(st.session_state.option2)
 )
-session_state.option2 = option2
+st.session_state.option2 = option2
 
 if option2 == '사용 가능한 매장 보러가기':
   option1 = '메뉴를 선택해주세요'
