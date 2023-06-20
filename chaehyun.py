@@ -370,10 +370,17 @@ if st.session_state.option2 == '자전거 타러가기':
 
 for i in range(8):
   st.sidebar.write("")
-  
-st.sidebar.subheader(f'현재 적립포인트는 {st.session_state["user_point"]}p입니다')
+
 rounded_div = """
-      <div style="background-color: #f4fbee; color: #006a34
+  <div style="background-color: #d4fbbd; color: #006a34
+  ; padding: 10px; text-align: center; border-radius: 10px;">
+      <b> 현재 적립포인트는 {}p입니다 </b>
+  </div>
+  """
+st.sidebar.markdown(rounded_div.format(st.session_state['user_point']), unsafe_allow_html=True)  
+
+rounded_div = """
+      <div style="background-color: #ffffff; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
            녹색자매님이 100p 적립했습니다!
       </div>
