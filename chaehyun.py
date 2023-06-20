@@ -292,8 +292,8 @@ if option1 == '재활용품 분리배출 하러 가기':
 ## 사용 가능 지점 페이지 ##
 option2 = st.sidebar.selectbox(
   '💰모은 포인트 사용하러 가기 GoGo',
-('메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기')
- index=['메뉴를 선택해주세요', '사용 가능한 매장 보러가기', '자전거 타러가기'].index(session_state.option2)
+('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'),
+ index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(session_state.option2)
 )
 session_state.option2 = option2
 
