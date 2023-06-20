@@ -135,7 +135,7 @@ if st.session_state.option0 == '대학교 인증하기':
       st.image(img)
     rounded_div = """
     <div style="background-color: #f4fbee; color: #006a34; padding: 10px; text-align: center; border-radius: 10px;">
-    에코리지의 기능은 [마이페이지-홈 화면]에서 확인하실 수 있습니다.
+    [👤마이페이지-홈 화면]으로 이동하여 에코리지를 경험해보세요!
     </div>
     """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
