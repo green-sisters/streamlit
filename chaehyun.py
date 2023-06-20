@@ -110,8 +110,6 @@ if user_name:
   st.sidebar.text(f'🌱{st.session_state.user_name_input}님, Ecollege에 오신걸 환영합니다!')
 campus = st.sidebar.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
 
-  
-  
 
 ## 영수증 인식 페이지 ##
 option1 = st.sidebar.selectbox(
@@ -127,7 +125,7 @@ if option1 == '영수증 인식하러 가기':
   if st.button("포인트 적립 방식"):   #포인트 적립 방식 안내
     st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
     st.write("")
-     rounded_div = """
+    rounded_div = """
 <div style="background-color: #f4fbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
     전자영수증: 100 point 적립<br>
     종이영수증: 80 point 적립<br>
