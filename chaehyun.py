@@ -108,6 +108,8 @@ if 'option1' not in st.session_state:
     st.session_state.option1 = '메뉴를 선택해주세요'
 if 'option2' not in st.session_state:
     st.session_state.option2 = '메뉴를 선택해주세요'
+if 'point' not in st.session_state:
+  st.session_state['point'] = 0
 if 'user_point' not in st.session_state:
     st.session_state.user_point = 0
   
@@ -170,21 +172,21 @@ elif st.session_state.option1 == '영수증 인식하러 가기':
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
           img.save(temp_file.name,)
           sentence, count = extract_text(temp_file.name)
-          point = 100 * count
+          st.session_state['point'] = 100 * count
           rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
       </div>
       """
-          st.markdown(rounded_div.format(point), unsafe_allow_html=True)
+          st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
           
               # st.markdown("""
               #       <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
               #           다회용기를 사용하셨군요! {}포인트가 지급되었습니다!
               #       </div>
               #       """.format(point), unsafe_allow_html=True)
-          st.session_state["user_point"] += point
+          st.session_state["user_point"] += st.session_state['point']
       
     if receipt_type =='종이영수증':
       rounded_div = """
@@ -205,15 +207,15 @@ elif st.session_state.option1 == '영수증 인식하러 가기':
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(upload_file.name)[1]) as temp_file:
           img.save(temp_file.name,)
           sentence, count = extract_text(temp_file.name)
-          point = 80 * count
+          st.session_state['point'] = 80 * count
           rounded_div = """
       <div style="background-color: #d4fbbd; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
           <b> 다회용기를 사용하셨군요! {}포인트가 지급되었습니다! </b>
       </div>
       """
-          st.markdown(rounded_div.format(point), unsafe_allow_html=True)
-          st.session_state["user_point"] += point
+          st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
+          st.session_state["user_point"] += st.session_state['point']
                
 #재활용품 페이지
 elif st.session_state.option1 == '재활용품 분리배출 하러 가기':
@@ -356,6 +358,6 @@ rounded_div = """
            녹색자매님이 100p 적립했습니다!
       </div>
       """
-st.sidebar.markdown(rounded_div.format(point), unsafe_allow_html=True)
+st.sidebar.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
 
 
