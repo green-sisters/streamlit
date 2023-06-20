@@ -210,7 +210,7 @@ if option1 == '재활용품 분리배출 하러 가기':
                 </div>
                 """.format(st.session_state['point']), unsafe_allow_html=True) 
     st.write("")
-    img = Image.open('안내 사진/페트병 분리수거.png')
+    img = Image.open('src/안내 사진/페트병 분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     st.markdown("""
