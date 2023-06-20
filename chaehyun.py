@@ -124,7 +124,7 @@ if st.session_state.option0 == '대학교 인증하기':
     st.session_state.user_name = st.text_input("이름을 입력하세요", key="user_name_input")
     if st.session_state.user_name:
         st.text(f'🌱{st.session_state.user_name}님, Ecollege에 오신걸 환영합니다!')
-    st.session_state.campus = st.sidebar.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
+    st.session_state.campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
 else:
     st.session_state.option1 = st.sidebar.selectbox(
        '🌳실천하기',
@@ -292,7 +292,7 @@ else:
     
     if st.session_state.option2 == '사용 가능한 매장 보러가기':
        if st.session_state.campus == '서강대학교':
-         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
+         st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
          st.write("")
          img1 = Image.open('src/안내 사진/그라찌에.png')
          img2 = Image.open('src/안내 사진/공차.png')
