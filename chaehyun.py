@@ -127,6 +127,8 @@ if st.session_state.option0 == '대학교 인증하기':
     if st.session_state.user_name:
         st.text(f'🌱{st.session_state.user_name}님, Ecollege에 오신걸 환영합니다!')
     st.session_state.campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
+
+else:
     st.session_state.option1 = st.sidebar.selectbox(
        '🌳실천하기',
 ('메뉴를 선택해주세요','영수증 인식하러 가기', '재활용품 분리배출 하러 가기'),
@@ -139,7 +141,7 @@ if st.session_state.option0 == '대학교 인증하기':
             )
 
 #영수증 인식 페이지  
-elif st.session_state.option1 == '영수증 인식하러 가기':
+if st.session_state.option1 == '영수증 인식하러 가기':
   st.title("🧾영수증 인식")
   if st.button("포인트 적립 방식"):   #포인트 적립 방식 안내
     st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
@@ -218,7 +220,7 @@ elif st.session_state.option1 == '영수증 인식하러 가기':
           st.session_state["user_point"] += st.session_state['point']
                
 #재활용품 페이지
-elif st.session_state.option1 == '재활용품 분리배출 하러 가기':
+if st.session_state.option1 == '재활용품 분리배출 하러 가기':
   st.subheader("♻️재활용품 분리배출")
   if st.button("반납 방법 알아보기"):
     img = Image.open('src/안내 사진/음료 투입.png')
@@ -291,7 +293,7 @@ elif st.session_state.option1 == '재활용품 분리배출 하러 가기':
           
      
     
-elif st.session_state.option2 == '사용 가능한 매장 보러가기':
+if st.session_state.option2 == '사용 가능한 매장 보러가기':
   if st.session_state.campus == '서강대학교':
     st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
     st.write("")
@@ -326,26 +328,26 @@ elif st.session_state.option2 == '사용 가능한 매장 보러가기':
       st.image(img3, caption='본솔')
       st.image(img6, caption='컴포즈')
           
-    if st.session_state.option2 == '자전거 타러가기':
-       st.subheader("🚲아래에서 이용권을 구매해주세요")
-       st.markdown("""
-              <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
-                  <b>30분 이용권: 500원</b>
-              </div>
-              """.format(st.session_state['point']), unsafe_allow_html=True)
-       st.write("")
-       st.markdown("""
-              <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
-                 <b> 1시간 이용권: 1000원</b>
-              </div>
-              """.format(st.session_state['point']), unsafe_allow_html=True)
-       st.write("")
-       st.markdown("""
-              <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
-                 <b> 2시간 이용권: 2000원</b>
-              </div>
-              """.format(st.session_state['point']), unsafe_allow_html=True)
- 
+if st.session_state.option2 == '자전거 타러가기':
+  st.subheader("🚲아래에서 이용권을 구매해주세요")
+  st.markdown("""
+          <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
+              <b>30분 이용권: 500원</b>
+          </div>
+          """.format(st.session_state['point']), unsafe_allow_html=True)
+  st.write("")
+  st.markdown("""
+         <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
+            <b> 1시간 이용권: 1000원</b>
+         </div>
+         """.format(st.session_state['point']), unsafe_allow_html=True)
+  st.write("")
+  st.markdown("""
+         <div style="background-color: #f4fbee; color: #006a34; padding: 20px 5px; font-size: 40px; text-align: center;">
+            <b> 2시간 이용권: 2000원</b>
+         </div>
+         """.format(st.session_state['point']), unsafe_allow_html=True)
+
  
 
 for i in range(8):
