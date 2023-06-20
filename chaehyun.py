@@ -378,7 +378,9 @@ rounded_div = """
   </div>
   """
 st.sidebar.markdown(rounded_div.format(st.session_state['user_point']), unsafe_allow_html=True)  
+st.sidebar.write("")
 
+st.sidebar.write("")
 rounded_div = """
       <div style="background-color: #ffffff; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
