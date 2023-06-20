@@ -115,10 +115,11 @@ if 'user_point' not in st.session_state:
   
 ## 메인 페이지 ##
 st.title('🍀에코리지')
-
+if 'option0' not in st.session_state:
+  st.write('왼쪽 사이드바의 <대학교 인증하기>를 클릭하여 정보를 입력해주세요.')
 st.session_state.option0 = st.sidebar.selectbox(
     '👤마이페이지',
-    ('메뉴를 선택해주세요', '대학교 인증하기'),
+    ('홈 화면', '대학교 인증하기'),
     index=['메뉴를 선택해주세요', '대학교 인증하기'].index(st.session_state.option0)
 )
 
@@ -127,6 +128,16 @@ if st.session_state.option0 == '대학교 인증하기':
     if st.session_state.user_name:
         st.text(f'🌱{st.session_state.user_name}님, Ecollege에 오신걸 환영합니다!')
     st.session_state.campus = st.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
+    if st.button("대학교 인증 방법"):
+      img = Image.open('src/안내 사진/인증 방식.png')
+      # img = img.resize((256, 256))
+      st.image(img)
+    rounded_div = """
+    <div style="background-color: #f4fbee; color: #006a34; padding: 10px; text-align: center; border-radius: 10px;">
+    에코리지의 기능은 [마이페이지-홈 화면]에서 확인하실 수 있습니다.
+    </div>
+    """.format(st.session_state['point'])
+    st.markdown(rounded_div, unsafe_allow_html=True)
 
 else:
     st.session_state.option1 = st.sidebar.selectbox(
@@ -148,8 +159,8 @@ if st.session_state.option1 == '영수증 인식하러 가기':
     st.write("")
     rounded_div = """
     <div style="background-color: #fbfbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
-    <b>전자영수증: 100 point 적립<br>
-    종이영수증: 80 point 적립</b>
+    전자영수증: 100 point 적립<br>
+    종이영수증: 80 point 적립
     </div>
     """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
@@ -184,7 +195,7 @@ if st.session_state.option1 == '영수증 인식하러 가기':
           st.markdown(rounded_div.format(st.session_state['point']), unsafe_allow_html=True)
           
               # st.markdown("""
-              #       <div style="background-color: #dbead5; color: #000000; padding: 10px; text-align: center;">
+              #       <div style="background-color: #f4fbee; color: #006a34; padding: 10px; text-align: center;">
               #           다회용기를 사용하셨군요! {}포인트가 지급되었습니다!
               #       </div>
               #       """.format(point), unsafe_allow_html=True)
