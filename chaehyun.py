@@ -133,8 +133,8 @@ if option1 == '영수증 인식하러 가기':
 """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    st.write("하루 적립 가능 최대 포인트는 300 point입니다<br>
-    개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
+    st.write("하루 적립 가능 최대 포인트는 300 point입니다")
+    st.write("개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
         
   st.write("") #영수증 종류 선택
   receipt_type = st.selectbox(
