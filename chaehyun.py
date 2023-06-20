@@ -126,12 +126,13 @@ if option1 == '영수증 인식하러 가기':
     st.write("영수증 종류에 따라 적립되는 포인트가 달라집니다.")
     st.write("")
     rounded_div = """
-<div style="background-color: #f4fbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
+<div style="background-color: #d4fbbd; color: #006a34; padding: 10px; text-align: center; border-radius: 10px;">
     전자영수증: 100 point 적립<br>
     종이영수증: 80 point 적립<br>
 </div>
 """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
+    st.write("")
     st.write("")
     st.write("하루 적립 가능 최대 포인트는 300 point입니다")
     st.write("개인 바코드를 매장에 제시하면 포인트가 차감되는 방식으로 현금처럼 사용할 수 있습니다.")
@@ -162,7 +163,8 @@ if option1 == '영수증 인식하러 가기':
 
   else:
     rounded_div = """
-<div style="background-color: #f4fbee; color: #000000; padding: 10px; text-align: center; border-radius: 10px;">
+<div style="background-color: #d4fbbd; color: #006a34
+; padding: 10px; text-align: center; border-radius: 10px;">
     종이영수증 대신 전자영수증을 발급하면 환경 보호에 많은 도움이 돼요!
 </div>
 """.format(st.session_state['point'])
