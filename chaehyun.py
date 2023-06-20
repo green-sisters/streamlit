@@ -283,63 +283,63 @@ else:
             st.session_state["user_point"] += price_dict[predicted_label]
         text_placeholder.empty()
           
-        else:
-            st.session_state.option2 = st.sidebar.selectbox(
+    else:
+      st.session_state.option2 = st.sidebar.selectbox(
                   '💰모은 포인트 사용하러 가기 GoGo',
 ('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'),
  index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(st.session_state.option2)
             )
     
-            if st.session_state.option2 == '사용 가능한 매장 보러가기'
-              if st.session_state.campus == '서강대학교':
-                 st.subheader(f"{campus}에서 사용 가능한 매장입니다")
-                 st.write("")
-                 img1 = Image.open('src/안내 사진/그라찌에.png')
-                 img2 = Image.open('src/안내 사진/공차.png')
-                 img3 = Image.open('src/안내 사진/본솔.png')
-                 img4 = Image.open('src/안내 사진/아이엔지.jpg')
-                 img5 = Image.open('src/안내 사진/커브.jpg')
-                 img6 = Image.open('src/안내 사진/컴포즈.png')
-                 img7 = Image.open('src/안내 사진/샐러디.png')
-                 img8 = Image.open('src/안내 사진/한솥.png')
+     if st.session_state.option2 == '사용 가능한 매장 보러가기'
+       if st.session_state.campus == '서강대학교':
+         st.subheader(f"{campus}에서 사용 가능한 매장입니다")
+         st.write("")
+         img1 = Image.open('src/안내 사진/그라찌에.png')
+         img2 = Image.open('src/안내 사진/공차.png')
+         img3 = Image.open('src/안내 사진/본솔.png')
+         img4 = Image.open('src/안내 사진/아이엔지.jpg')
+         img5 = Image.open('src/안내 사진/커브.jpg')
+         img6 = Image.open('src/안내 사진/컴포즈.png')
+         img7 = Image.open('src/안내 사진/샐러디.png')
+         img8 = Image.open('src/안내 사진/한솥.png')
               
-                 img1 = img1.resize((128,128))
-                 img2 = img2.resize((128,128))
-                 img3 = img3.resize((128,128))
-                 img4 = img4.resize((128,128))
-                 img5 = img5.resize((128,128))
-                 img6 = img6.resize((128,128))
-                 img7 = img7.resize((128,128))
-                 img8 = img8.resize((128,128))
+         img1 = img1.resize((128,128))
+         img2 = img2.resize((128,128))
+         img3 = img3.resize((128,128))
+         img4 = img4.resize((128,128))
+         img5 = img5.resize((128,128))
+         img6 = img6.resize((128,128))
+         img7 = img7.resize((128,128))
+         img8 = img8.resize((128,128))
              
-                 col1, col2, col3 = st.columns(3)
-                 with col1:
-                    st.image(img1, caption='그라찌에')
-                    st.image(img4, caption='아이엔지')
-                    st.image(img7, caption='샐러디')
-                 with col2:
-                    st.image(img2, caption='공차')
-                    st.image(img5, caption='커피브레이크')
-                    st.image(img8, caption='한솥')
-                 with col3:
-                    st.image(img3, caption='본솔')
-                    st.image(img6, caption='컴포즈')
-
-              if st.session_state.option2 == '자전거 타러 가기':
-                st.subheader("🚲아래에서 이용권을 구매해주세요")
-  st.markdown("""
+         col1, col2, col3 = st.columns(3)
+         with col1:
+           st.image(img1, caption='그라찌에')
+           st.image(img4, caption='아이엔지')
+           st.image(img7, caption='샐러디')
+         with col2:
+           st.image(img2, caption='공차')
+           st.image(img5, caption='커피브레이크')
+           st.image(img8, caption='한솥')
+         with col3:
+           st.image(img3, caption='본솔')
+           st.image(img6, caption='컴포즈')
+           
+     if st.session_state.option2 == '자전거 타러 가기':
+       st.subheader("🚲아래에서 이용권을 구매해주세요")
+       st.markdown("""
               <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
                   30분 이용권: 500원
               </div>
               """.format(st.session_state['point']), unsafe_allow_html=True)
-  st.write("")
-  st.markdown("""
+       st.write("")
+       st.markdown("""
               <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
                   1시간 이용권: 1000원
               </div>
               """.format(st.session_state['point']), unsafe_allow_html=True)
-  st.write("")
-  st.markdown("""
+       st.write("")
+       st.markdown("""
               <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
                   2시간 이용권: 2000원
               </div>
