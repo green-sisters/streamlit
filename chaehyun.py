@@ -325,7 +325,7 @@ else:
            st.image(img3, caption='본솔')
            st.image(img6, caption='컴포즈')
            
-     if st.session_state.option2 == '자전거 타러 가기':
+    if st.session_state.option2 == '자전거 타러 가기':
        st.subheader("🚲아래에서 이용권을 구매해주세요")
        st.markdown("""
               <div style="background-color: #dbead5; color: #000000; padding: 20px 5px; font-size: 40px; text-align: center;">
