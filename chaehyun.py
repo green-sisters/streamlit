@@ -120,7 +120,7 @@ if 'option0' not in st.session_state:
 st.session_state.option0 = st.sidebar.selectbox(
     '👤마이페이지',
     ('홈 화면', '대학교 인증하기'),
-    index=['메뉴를 선택해주세요', '대학교 인증하기'].index(st.session_state.option0)
+    index=['홈 화면', '대학교 인증하기'].index(st.session_state.option0)
 )
 
 if st.session_state.option0 == '대학교 인증하기':
