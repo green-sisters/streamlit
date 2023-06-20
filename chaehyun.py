@@ -112,6 +112,8 @@ if 'point' not in st.session_state:
   st.session_state['point'] = 0
 if 'user_point' not in st.session_state:
     st.session_state.user_point = 0
+if 'campus' not in st.session_state:
+  st.session_state.campus = ''
   
 ## 메인 페이지 ##
 st.title('🍀에코리지')
