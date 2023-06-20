@@ -20,6 +20,14 @@ import json
 
 from tensorflow.keras.models import load_model
 
+# Define a custom session state class
+class SessionState:
+    def __init__(self):
+        self.option0 = None
+
+# Create an instance of the session state
+session_state = SessionState()
+
 ## OCR 인식 함수 ##
 def extract_text(file):
   api_url = 'https://8cbdvua55p.apigw.ntruss.com/custom/v1/22878/18b029032c74f9dc3223fcfe629227edf8e8880be05ecf50148ea52dae003f79/general'
