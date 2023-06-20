@@ -393,7 +393,7 @@ rounded_div = """
   """
 st.sidebar.markdown(rounded_div.format(st.session_state['user_point']), unsafe_allow_html=True)  
 barcode = Image.open('src/안내 사진/바코드.png')
-st.sidebar.image(barcode, caption='결제 바코드')
+st.sidebar.image(barcode)
 rounded_div = """
       <div style="background-color: #ffffff; color: #006a34
       ; padding: 10px; text-align: center; border-radius: 10px;">
