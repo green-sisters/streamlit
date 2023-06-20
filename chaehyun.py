@@ -302,17 +302,21 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       predicted_label = classification(temp_file.name)
       price_dict = {'캔':30, '플라스틱': 20, '유리': 20}
       if predicted_label == '확인불가':
-        st.markdown("""
-                   <div style="background-color: #fbeeee; color: #000000; padding: 10px;text-align: center;">
-                       <b>확인이 불가합니다. 올바르게 배출해주세요. </b>
-                   </div>
-                   """.format(st.session_state['point']), unsafe_allow_html=True) 
+        rounded_div = """
+        <div style="background-color: #fbeeee; color: #000000;
+      ; padding: 10px; text-align: center; border-radius: 10px;">
+          <b>확인이 불가합니다. 올바르게 배출해주세요. </b>
+      </div>
+      """.format(st.session_state['point'])
+        st.markdown(rounded_div, unsafe_allow_html=True)
       else:
-        st.markdown("""
-               <div style="background-color: #f4fbee; color: #006a34; padding: 10px;text-align: center;">
-                   <b>{}을(를) 배출하셨습니다. {}포인트가 지급되었습니다!</b>
-               </div>
-               """.format(predicted_label,price_dict[predicted_label]), unsafe_allow_html=True)
+        rounded_div = """
+      <div style="background-color: #d4fbbd; color: #006a34
+      ; padding: 10px; text-align: center; border-radius: 10px;">
+           <b>{}을(를) 배출하셨습니다. {}포인트가 지급되었습니다!</b>
+      </div>
+      """
+        st.markdown(rounded_div.format(predicted_label,price_dict[predicted_label]), unsafe_allow_html=True)
         st.session_state["user_point"] += price_dict[predicted_label]
         text_placeholder.empty()
           
