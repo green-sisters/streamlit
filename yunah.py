@@ -141,7 +141,7 @@ if st.session_state.option0 == "대학교 인증하기":
 #     campus = st.sidebar.radio('재학중인 학교를 선택하세요', ['서강대학교', '연세대학교' ,'이화여자대학교', '홍익대학교'])
 #     st.session_state.campus = campus  # update the campus in the session state
     if st.button("대학교 인증 방법"):
-      img = Image.open('안내 사진/인증 방식_6.png')
+      img = Image.open('src/안내 사진/인증 방식_6.png')
       # img = img.resize((256, 256))
       st.image(img)
     rounded_div = """
@@ -244,7 +244,7 @@ if st.session_state.option1 == '영수증 인식하러 가기':
 if st.session_state.option1 == '재활용품 분리배출 하러 가기':
   st.subheader("♻️재활용품 분리배출")
   if st.button("반납 방법 알아보기"):
-    img = Image.open('안내 사진/음료 투입.png')
+    img = Image.open('src/안내 사진/음료 투입.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -255,7 +255,7 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    img = Image.open('안내 사진/페트병 분리수거.png')
+    img = Image.open('src/안내 사진/페트병 분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -266,7 +266,7 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    img = Image.open('안내 사진/캔분리수거.png')
+    img = Image.open('src/안내 사진/캔분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -277,7 +277,7 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    img = Image.open('안내 사진/유리분리수거.png')
+    img = Image.open('src/안내 사진/유리분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -329,14 +329,14 @@ if st.session_state.option2 == '사용 가능한 매장 보러가기':
   if st.session_state.campus == '서강대학교':
     st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
     st.write("")
-    img1 = Image.open('안내 사진/그라찌에.png')
-    img2 = Image.open('안내 사진/공차.png')
-    img3 = Image.open('안내 사진/본솔.png')
-    img4 = Image.open('안내 사진/아이엔지.jpg')
-    img5 = Image.open('안내 사진/커브.jpg')
-    img6 = Image.open('안내 사진/컴포즈.png')
-    img7 = Image.open('안내 사진/샐러디.png')
-    img8 = Image.open('안내 사진/한솥.png')
+    img1 = Image.open('src/안내 사진/그라찌에.png')
+    img2 = Image.open('src/안내 사진/공차.png')
+    img3 = Image.open('src/안내 사진/본솔.png')
+    img4 = Image.open('src/안내 사진/아이엔지.jpg')
+    img5 = Image.open('src/안내 사진/커브.jpg')
+    img6 = Image.open('src/안내 사진/컴포즈.png')
+    img7 = Image.open('src/안내 사진/샐러디.png')
+    img8 = Image.open('src/안내 사진/한솥.png')
               
     img1 = img1.resize((128,128))
     img2 = img2.resize((128,128))
