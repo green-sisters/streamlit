@@ -104,9 +104,9 @@ if 'point' not in st.session_state:
 # 초기 세션 상태 설정
 if 'option0' not in st.session_state:
     st.session_state.option0 = '홈 화면'
-#if 'option1' not in st.session_state:
+if 'option1' not in st.session_state:
     st.session_state.option1 = '메뉴를 선택해주세요'
-##if 'option2' not in st.session_state:
+if 'option2' not in st.session_state:
     st.session_state.option2 = '메뉴를 선택해주세요'
 if 'point' not in st.session_state:
   st.session_state['point'] = 0
@@ -127,9 +127,7 @@ if 'initialized' not in st.session_state:
     st.markdown(rounded_div, unsafe_allow_html=True)
 st.session_state.option0 = st.sidebar.selectbox(
     '👤마이페이지',
-    ('홈 화면', '대학교 인증하기'),
-    index=['홈 화면', '대학교 인증하기'].index(st.session_state.option0)
-)
+    ('홈 화면', '대학교 인증하기'))
 if st.session_state.option0 == "대학교 인증하기":
     user_name = st.text_input("이름을 입력하세요", key="user_name_input")
     if user_name:
@@ -153,17 +151,14 @@ if st.session_state.option0 == "대학교 인증하기":
     """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
 
-else:
-    st.session_state.option1 = st.sidebar.selectbox(
-       '🌳실천하기',
-('메뉴를 선택해주세요','영수증 인식하러 가기', '재활용품 분리배출 하러 가기'),
-  index=['메뉴를 선택해주세요', '영수증 인식하러 가기', '재활용품 분리배출 하러 가기'].index(st.session_state.option1)
-    )
-    st.session_state.option2 = st.sidebar.selectbox(
-                  '💰모은 포인트 사용하러 가기 GoGo',
-('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'),
- index=['메뉴를 선택해주세요','사용 가능한 매장 보러가기', '자전거 타러가기'].index(st.session_state.option2)
-            )
+
+st.session_state.option1 = st.sidebar.selectbox(
+   '🌳실천하기',
+('메뉴를 선택해주세요','영수증 인식하러 가기', '재활용품 분리배출 하러 가기'))
+
+st.session_state.option2 = st.sidebar.selectbox(
+              '💰모은 포인트 사용하러 가기 GoGo',
+('메뉴를 선택해주세요','사용 가능한 매장 보러가기','자전거 타러가기'))
 
 #영수증 인식 페이지  
 if st.session_state.option1 == '영수증 인식하러 가기':
@@ -249,7 +244,7 @@ if st.session_state.option1 == '영수증 인식하러 가기':
 if st.session_state.option1 == '재활용품 분리배출 하러 가기':
   st.subheader("♻️재활용품 분리배출")
   if st.button("반납 방법 알아보기"):
-    img = Image.open('src/안내 사진/음료 투입.png')
+    img = Image.open('안내 사진/음료 투입.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -260,7 +255,7 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    img = Image.open('src/안내 사진/페트병 분리수거.png')
+    img = Image.open('안내 사진/페트병 분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -271,7 +266,7 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    img = Image.open('src/안내 사진/캔분리수거.png')
+    img = Image.open('안내 사진/캔분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -282,7 +277,7 @@ if st.session_state.option1 == '재활용품 분리배출 하러 가기':
       """.format(st.session_state['point'])
     st.markdown(rounded_div, unsafe_allow_html=True)
     st.write("")
-    img = Image.open('src/안내 사진/유리분리수거.png')
+    img = Image.open('안내 사진/유리분리수거.png')
     img = img.resize((256, 256))
     st.image(img)
     rounded_div = """
@@ -334,14 +329,14 @@ if st.session_state.option2 == '사용 가능한 매장 보러가기':
   if st.session_state.campus == '서강대학교':
     st.subheader(f"{st.session_state.campus}에서 사용 가능한 매장입니다")
     st.write("")
-    img1 = Image.open('src/안내 사진/그라찌에.png')
-    img2 = Image.open('src/안내 사진/공차.png')
-    img3 = Image.open('src/안내 사진/본솔.png')
-    img4 = Image.open('src/안내 사진/아이엔지.jpg')
-    img5 = Image.open('src/안내 사진/커브.jpg')
-    img6 = Image.open('src/안내 사진/컴포즈.png')
-    img7 = Image.open('src/안내 사진/샐러디.png')
-    img8 = Image.open('src/안내 사진/한솥.png')
+    img1 = Image.open('안내 사진/그라찌에.png')
+    img2 = Image.open('안내 사진/공차.png')
+    img3 = Image.open('안내 사진/본솔.png')
+    img4 = Image.open('안내 사진/아이엔지.jpg')
+    img5 = Image.open('안내 사진/커브.jpg')
+    img6 = Image.open('안내 사진/컴포즈.png')
+    img7 = Image.open('안내 사진/샐러디.png')
+    img8 = Image.open('안내 사진/한솥.png')
               
     img1 = img1.resize((128,128))
     img2 = img2.resize((128,128))
